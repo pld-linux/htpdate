@@ -1,0 +1,6 @@
+# Sync time at startup
+HTPDATE_OPTIONS="-s"
+HTPDATE_SERVERS="www.aster.pl"
+
+# also run htpdate from cron
+HTPDATE_CRON="yes"
