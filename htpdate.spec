@@ -2,14 +2,14 @@ Summary:	HTTP based time synchronization tool
 Summary(pl):	Klient do synchronizacji czasu po HTTP
 Name:		htpdate
 Version:	0.9.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Daemons
-URL:		http://www.clevervest.com/htp/
 Source0:	http://www.clevervest.com/htp/archive/c/%{name}-%{version}.tar.bz2
 # Source0-md5:	71c682d90bd783ec33fa34d16591f00e
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
+URL:		http://www.clevervest.com/htp/
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,15 +48,12 @@ Htpdate dzia³a tak¿e przez serwer proxy.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_sbindir}
-install -d $RPM_BUILD_ROOT/%{_mandir}
-install -d $RPM_BUILD_ROOT/%{_initrddir}
-install -d $RPM_BUILD_ROOT/etc/sysconfig
-install -d $RPM_BUILD_ROOT/etc/cron.hourly
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,cron.hourly}
 
 install htpdate $RPM_BUILD_ROOT%{_sbindir}/htpdate
-install htpdate.8.gz $RPM_BUILD_ROOT%{_mandir}/htpdate.8.gz
-install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/htpdate
+gzip -dc htpdate.8.gz >$RPM_BUILD_ROOT%{_mandir}/man8/htpdate.8
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/htpdate
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/htpdate
 
 cat > $RPM_BUILD_ROOT/etc/cron.hourly/htpdate <<EOF
@@ -86,8 +83,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README Changelog
-%attr(754,root,root) %{_initrddir}/htpdate
+%attr(754,root,root) /etc/rc.d/init.d/htpdate
 %attr(755,root,root) %{_sbindir}/htpdate
 %attr(754,root,root) /etc/cron.hourly/htpdate
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/htpdate
-%{_mandir}/htpdate.8*
+%{_mandir}/man8/htpdate.8*
