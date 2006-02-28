@@ -10,6 +10,7 @@ Source0:	http://www.clevervest.com/htp/archive/c/%{name}-%{version}.tar.bz2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.clevervest.com/htp/
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,13 +53,13 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,cron.hourly}
 
 install htpdate $RPM_BUILD_ROOT%{_sbindir}/htpdate
-gzip -dc htpdate.8.gz >$RPM_BUILD_ROOT%{_mandir}/man8/htpdate.8
+gzip -dc htpdate.8.gz > $RPM_BUILD_ROOT%{_mandir}/man8/htpdate.8
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/htpdate
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/htpdate
 
-cat > $RPM_BUILD_ROOT/etc/cron.hourly/htpdate <<EOF
+cat > $RPM_BUILD_ROOT/etc/cron.hourly/htpdate <<'EOF'
 #!/bin/sh
-/etc/rc.d/init.d/htpdate cronsettime
+exec /sbin/service htpdate cronsettime
 EOF
 
 %clean
@@ -66,18 +67,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add htpdate
-if [ -f /var/lock/subsys/htpdate ]; then
-	/etc/rc.d/init.d/htpdate restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/htpdate start\" to start htpdate."
-fi
+%service htpdate restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/htpdate ]; then
-		/etc/rc.d/init.d/htpdate stop >&2
-	fi
-		/sbin/chkconfig --del htpdate
+	%service htpdate stop
+	/sbin/chkconfig --del htpdate
 fi
 
 %files
