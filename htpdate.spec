@@ -1,5 +1,5 @@
 Summary:	HTTP based time synchronization tool
-Summary(pl):	Klient do synchronizacji czasu po HTTP
+Summary(pl.UTF-8):   Klient do synchronizacji czasu po HTTP
 Name:		htpdate
 Version:	0.9.2
 Release:	1
@@ -28,16 +28,16 @@ Install the htp package if you need tools for keeping your system's
 time synchronized via the HTP protocol. Htpdate works also through
 proxy servers.
 
-%description -l pl
-Protokó³ HTTP Time Protocol (HTP) jest u¿ywany do synchronizacji czasu
-systemu z serwerami WWW jako ¼ród³em czasu odniesienia. Program
-htpdate synchronizuje czas systemu z sygnatur± czasow± (timestamp)
-znajduj±c± siê w odpowiedzi serwera WWW. Dok³adno¶æ jest zazwyczaj
-wiêksza ni¿ 0.5 sekundy i ro¶nie przy korzystaniu z wiêkszej liczby
-serwerów. Je¿eli wymagana jest wiêksza dok³adno¶æ, zamiast htpdate
-nale¿y u¿yæ pakietu ntp-client.
+%description -l pl.UTF-8
+ProtokÃ³Å‚ HTTP Time Protocol (HTP) jest uÅ¼ywany do synchronizacji czasu
+systemu z serwerami WWW jako ÅºrÃ³dÅ‚em czasu odniesienia. Program
+htpdate synchronizuje czas systemu z sygnaturÄ… czasowÄ… (timestamp)
+znajdujÄ…cÄ… siÄ™ w odpowiedzi serwera WWW. DokÅ‚adnoÅ›Ä‡ jest zazwyczaj
+wiÄ™ksza niÅ¼ 0.5 sekundy i roÅ›nie przy korzystaniu z wiÄ™kszej liczby
+serwerÃ³w. JeÅ¼eli wymagana jest wiÄ™ksza dokÅ‚adnoÅ›Ä‡, zamiast htpdate
+naleÅ¼y uÅ¼yÄ‡ pakietu ntp-client.
 
-Htpdate dzia³a tak¿e przez serwer proxy.
+Htpdate dziaÅ‚a takÅ¼e przez serwer proxy.
 
 %prep
 %setup -q
