@@ -1,5 +1,5 @@
 Summary:	HTTP based time synchronization tool
-Summary(pl.UTF-8):   Klient do synchronizacji czasu po HTTP
+Summary(pl.UTF-8):	Klient do synchronizacji czasu po HTTP
 Name:		htpdate
 Version:	0.9.2
 Release:	1
