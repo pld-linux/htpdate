@@ -1,12 +1,12 @@
 Summary:	HTTP based time synchronization tool
 Summary(pl.UTF-8):	Klient do synchronizacji czasu po HTTP
 Name:		htpdate
-Version:	1.0.1
+Version:	1.0.4
 Release:	1
 License:	GPL
 Group:		Daemons
 Source0:	http://www.clevervest.com/htp/archive/c/%{name}-%{version}.tar.bz2
-# Source0-md5:	a0c2b7a3e89a9fedb1ae8cba17928ec3
+# Source0-md5:	a13ec89839c33965794ebf53c4e690db
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.clevervest.com/htp/
