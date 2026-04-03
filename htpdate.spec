@@ -2,7 +2,7 @@ Summary:	HTTP based time synchronization tool
 Summary(pl.UTF-8):	Klient do synchronizacji czasu po HTTP
 Name:		htpdate
 Version:	1.0.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Daemons
 Source0:	http://www.clevervest.com/htp/archive/c/%{name}-%{version}.tar.bz2
